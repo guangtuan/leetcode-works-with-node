@@ -1,7 +1,7 @@
 const resolve = require('./index');
 const TreeNode = require('../../../tools/Tree/TreeNode');
 const { printBST } = require('../../../tools/Tree/tools');
-const { horizontalBuildBST } = require('../../../tools/tree/create');
+const { horizontalBuildBST } = require('../../../tools/Tree/create');
 const assert = require('assert');
 
 const testCases = [{
@@ -13,13 +13,15 @@ const testCases = [{
 }, {
     input: [1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, null, null, 5, 5],
     output: true
+}, {
+  input: [],
+  output: true
 }];
 
 describe('#balanced binary tree', () => {
     testCases.forEach(({ input, output }) => {
         it(`input is ${input}, output is ${output}`, () => {
             const realInput = horizontalBuildBST(input);
-            printBST(realInput);
             assert.equal(output, resolve(realInput));
         });
     });
