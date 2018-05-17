@@ -6,7 +6,7 @@ function ListNode(val) {
 const last = arr => arr[arr.length - 1];
 const head = arr => arr[0];
 
-const linkedListFromArray = array => head(array.reduce((acc, curr, currIdx, arr) => {
+const linkedListFromArray = array => head(array.reduce((acc, curr) => {
   let node = new ListNode(curr);
   if (last(acc)) {
     last(acc).next = node;
@@ -25,7 +25,7 @@ const dump = listNode => {
   console.log(ret);
 }
 
-const dumpPre = listNode => {
+const dumpRight = listNode => {
   let ret = []
   let ln = listNode;
   while (ln) {
@@ -49,7 +49,7 @@ const dumpWithMsg = (msg, listNode) => {
 const dumpPreWithMsg = (msg, listNode) => {
   console.log(`=================${msg}=================`);
   console.log('');
-  dumpPre(listNode);
+  dumpRight(listNode);
   console.log('');
   console.log('');
   console.log('');
@@ -69,7 +69,7 @@ const cycleLinkedListFromArray = array => {
 
 module.exports = {
   dump: dump,
-  dumpPre: dumpPre,
+  dumpPre: dumpRight,
   dumpWithMsg: dumpWithMsg,
   dumpPreWithMsg: dumpPreWithMsg,
   ListNode: ListNode,
