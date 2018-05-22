@@ -1,7 +1,7 @@
 const resolve = require('./index');
-const TreeNode = require('../../../tools/Tree/TreeNode');
-const { printBST } = require('../../../tools/Tree/tools');
-const { horizontalBuildBST } = require('../../../tools/Tree/create');
+const TreeNode = require('../../../DataStructure/Tree/TreeNode');
+const { printBST } = require('../../../DataStructure/Tree/tools');
+const { horizontalBuildBST } = require('../../../DataStructure/Tree/create');
 const assert = require('assert');
 
 const testCases = [{
