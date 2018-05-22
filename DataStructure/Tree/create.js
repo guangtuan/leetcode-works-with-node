@@ -12,11 +12,6 @@ const sortedArrayToBST = function (nums, start = 0, end = nums.length - 1) {
     return node;
 };
 
-// 0,
-// 1, 2
-// 3, 4, 5, 6
-// 7, 8, 9, 10, 11, 12, 13, 14
-
 const horizontalBuildBST = args => {
     let nodes = [new TreeNode(args[0])];
     for (let i = 1; i < args.length; i++) {
