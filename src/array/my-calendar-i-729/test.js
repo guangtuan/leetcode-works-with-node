@@ -47,14 +47,9 @@ describe('#my calendar 1', () => {
         const input = pairs.map(getProp('input'))
         const output = pairs.map(getProp('output'))
         it(`input: ${JSON.stringify(input)}\noutputs is ${output}`, () => {
-            const obj = Object.create(MyCalendar).createNew()
+            const obj = new MyCalendar();
             pairs.forEach(({ input: [start, end], output }) => {
-                console.log('______________________________');
-                console.log('current ranges', obj.ranges);
-                const result = obj.book(start, end);
-                console.log(result ? 'can book' : 'can not book');
-                assert.equal(output, result);
-                console.log('______________________________');
+                assert.equal(output, obj.book(start, end));
             });
         });
     });
