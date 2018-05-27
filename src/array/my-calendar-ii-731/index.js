@@ -1,56 +1,45 @@
 var MyCalendarTwo = function () {
-    this.root = null;
+  this.root = null;
 };
 
-var Node = function (count, start, end) {
-    this.count = count;
-    this.start = start;
-    this.end = end;
-    this.left = null;
-    this.right = null;
+let Node = function (start, end) {
+  if (start === end) {
+    return null;
+  }
+  return {
+    overlaps: false,
+    start: start,
+    end: end,
+    left: null,
+    right: null
+  }
 }
 
-let insert = (r, start, end) => {
-    if (start === end) {
-        return true;
-    }
-    if (r.end <= start) {
-        if (r.right === null) {
-            r.right = new Node(1, start, end);
-            return true
-        } else {
-            return insert(r.right, start, end);
-        }
-    } else if (r.start >= end) {
-        if (r.left === null) {
-            r.left = new Node(1, start, end);
-            return true
-        } else {
-            return insert(r.left, start, end);
-        }
-    } else if (r.count === 1) {
-        r.count++;
-        let leftStart = Math.min(r.start, start);
-        let leftEnd = Math.max(r.start, start);
-        let rightStart = Math.min(r.end, end);
-        let rightEnd = Math.max(r.end, end);
-        r.start = leftEnd;
-        r.end = rightStart;
-        if (r.left === null && r.right === null) {
-            r.left = new Node(1, leftStart, leftEnd);
-            r.right = new Node(1, rightStart, rightEnd);
-            return true;
-        } else if (r.left === null) {
-            r.left = new Node(1, leftStart, leftEnd);
-            return insert(r.right, rightStart, rightEnd);
-        } else if (r.right === null) {
-            r.right = new Node(1, rightStart, rightEnd);
-            return insert(r.left, leftStart, leftEnd);
-        } else {
-            return insert(r.left, leftStart, leftEnd) && insert(r.right, rightStart, rightEnd);
-        }
-    }
-    return false;
+let insert = (node, start, end) => {
+  if (node === null) {
+    return Node(start, end);
+  }
+  if (start >= end) {
+    return node;
+  }
+  if (node.end <= start) {
+    node.right = insert(node.right, start, end);
+    return node;
+  } else if (node.start >= end) {
+    node.left = insert(node.left, start, end);
+    return node;
+  } else {
+    node.overlaps = true;
+    let leftStart = Math.min(node.start, start);
+    let leftEnd = Math.max(node.start, start);
+    let rightStart = Math.min(node.end, end);
+    let rightEnd = Math.max(node.end, end);
+    node.right = insert(node.right, rightStart, rightEnd);
+    node.left = insert(node.left, leftStart, leftEnd);
+    node.start = leftEnd;
+    node.end = rightStart;
+    return node;
+  }
 }
 
 /** 
@@ -59,12 +48,34 @@ let insert = (r, start, end) => {
  * @return {boolean}
  */
 MyCalendarTwo.prototype.book = function (start, end) {
-    if (this.root === null) {
-        this.root = new Node(1, start, end);
-        return true;
-    } else {
-        return insert(this.root, start, end);
-    }
+  if (check(start, end, this.root)) {
+    this.root = insert(this.root, start, end);
+    return true;
+  } else {
+    return false;
+  }
 };
+
+let check = (start, end, node) => {
+  if (start >= end) {
+    return true;
+  }
+  if (node === undefined || node === null) {
+    return true;
+  }
+  if (start >= node.end) {
+    return check(start, end, node.right);
+  }
+  if (end <= node.start) {
+    return check(start, end, node.left);
+  }
+  if (node.overlaps) {
+    return false;
+  }
+  if ((start >= node.start) && (end <= node.end)) {
+    return true;
+  }
+  return (check(start, node.start, node.left)) && (check(node.end, end, node.right));
+}
 
 module.exports = MyCalendarTwo;
