@@ -102,12 +102,10 @@ describe('#my calendar two', () => {
         it(`input: ${JSON.stringify(input)}\noutputs is ${output}`, () => {
             const obj = new MyCalendarTwo();
             pairs.forEach(({ input: [start, end], output }) => {
-                console.log('_________________');
                 const result = obj.book(start, end);
-                console.log('____after book___');
-                console.log(JSON.stringify(obj));
-                console.log(start, end, result);
-                console.log('_________________');
+                // console.log('insert', start, end);
+                // console.log('result is', result);
+                // console.log(JSON.stringify(obj));
                 assert.equal(output, result);
             });
         });
