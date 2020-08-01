@@ -3,13 +3,15 @@
  * @return {number}
  */
 var numPairsDivisibleBy60 = function (time) {
-    let ret = 0;
-    for (let index = 0; index < time.length; index++) {
-        for (let index2 = index + 1; index2 < time.length; index2++) {
-            if ((time[index] + time[index2]) % 60 === 0) {
-                ret += 1;
-            }
-        }
+    const map = Array(60).fill(0);
+    for (let i of time) {
+        let remainder = i % 60;
+        map[remainder] ++;
+    }
+    let ret = map[0] * (map[0] - 1) / 2;
+    ret += (map[30]) * (map[30] - 1) / 2;
+    for (let index = 1; index < 30; index++) {
+        ret += map[index] * map[60 - index];
     }
     return ret;
 };
