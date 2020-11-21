@@ -3,24 +3,41 @@
  * @param {string} needle
  * @return {number}
  */
+
 var strStr = function (haystack, needle) {
-  let i = 0;
-  while (i <= haystack.length && i <= haystack.length - needle.length) {
-    let pass = true;
-    for (let j = 0; j < needle.length; j++) {
-      if (!pass) {
-        break;
-      }
-      if (haystack.charAt(i + j) !== needle.charAt(j)) {
-        pass = false;
+  const getNext = str => {
+    const next = [-1];
+    let k = -1;
+    let j = 0;
+    while (j < str.length) {
+      if (k === -1 || str[j] === str[k]) {
+        ++k;
+        ++j;
+        next[j] = k;
+      } else {
+        k = next[k];
       }
     }
-    if (pass) {
-      return i;
-    }
-    i++;
+    next.pop();
+    return next;
   }
-  return -1;
+  const next = getNext(needle);
+  let i = 0;
+  let j = 0;
+  while (i < haystack.length && j < needle.length) {
+    if (j === -1 || haystack[i] === needle[j]) {
+      i++;
+      j++;
+    }
+    else {
+      j = next[j];
+    }
+  }
+  if (j === needle.length) {
+    return i - j;
+  } else {
+    return -1;
+  }
 }
 
 module.exports = strStr;
