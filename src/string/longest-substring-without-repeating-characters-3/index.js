@@ -6,26 +6,27 @@ var lengthOfLongestSubstring = function (s) {
     if (s.length <= 1) {
         return s.length;
     }
-    let retValue = 0;
-    let i = 0;
-    let j = 1;
-    let map = {};
-    map[s.charAt(i)] = true;
-    while ((i < s.length - retValue) && j < s.length) {
-        if (map[s.charAt(j)]) {
-            i = i + 1;
-            j = i + 1;
-            retValue = Math.max(Object.keys(map).length, retValue);
-            map = {
-                [s.charAt(i)]: true
-            };
-        } else {
-            map[s.charAt(j)] = true;
-            j = j + 1;
+    let a = 0;
+    let b = 0;
+    let ret = b - a;
+    const map = {};
+    for (let i = 0; i < s.length; i++) {
+        let l = s[i];
+        if (l in map) {
+            ret = Math.max(ret, b - a);
+            let toDelRange = map[l];
+            for (let [letter, p] of Object.entries(map)) {
+                if (p <= toDelRange) {
+                    delete map[letter];
+                }
+            }
+            a = toDelRange + 1;
         }
+        b = b + 1;
+        map[l] = i;
     }
-    retValue = Math.max(Object.keys(map).length, retValue);
-    return retValue;
+    ret = Math.max(ret, b - a);
+    return ret;
 };
 
 module.exports = lengthOfLongestSubstring;

@@ -25,6 +25,14 @@ const testCases = [
     {
         input: "au",
         output: 2
+    },
+    {
+        input: "bbtablud",
+        output: 6
+    },
+    {
+        input: "aabaab!bb",
+        output: 3
     }
 ];
 
