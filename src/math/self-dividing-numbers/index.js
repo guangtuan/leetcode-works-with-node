@@ -21,12 +21,6 @@ var selfDividingNumbers = function (left, right) {
         }
         return true;
     }
-    let ret = [];
-    for (let i = left; i <= right; i++) {
-        if (valid(i)) {
-            ret.push(i);
-        }
-    }
     return Array((right - left + 1)).fill(null).map((val, index) => index + left).filter(i => valid(i));
 };
 
