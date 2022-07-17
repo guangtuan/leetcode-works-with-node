@@ -3,18 +3,9 @@
  * @return {number[]}
  */
 var numberOfPairs = function (nums) {
-    const st = {}
-    for (let num of nums) {
-        if (st[num]) {
-            st[num] = st[num] + 1;
-        } else {
-            st[num] = 1;
-        }
-    }
-    const re1 = Object.entries(st)
-        .map(e => {
-            return Math.floor(e[1] / 2);
-        })
+    const st = nums.reduce((acc, curr) => Object.assign(acc, {[curr]: (acc[curr] || 0) + 1}), {});
+    const re1 = Object.values(st)
+        .map(e => Math.floor(e / 2))
         .reduce((acc, prev) => acc + prev, 0);
     return [re1, nums.length - re1 * 2];
 };
