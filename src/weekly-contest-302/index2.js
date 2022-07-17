@@ -21,11 +21,15 @@ var maximumSum = function (nums) {
         }
     }
 
-    const numberBitSum = numberStr => numberStr
-        .toString()
-        .split("")
-        .map(str => Number.parseInt(str))
-        .reduce((acc, curr) => acc + curr, 0)
+    const numberBitSum = number => {
+        let modify = number;
+        let sum = 0;
+        while (modify > 0) {
+            sum += modify % 10;
+            modify = Math.floor(modify / 10);
+        }
+        return sum;
+    }
 
     const st = nums.reduce(
         (acc, curr) => {
