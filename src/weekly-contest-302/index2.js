@@ -40,7 +40,10 @@ var maximumSum = function (nums) {
         },
         {}
     );
-    return Math.max(...[...Object.values(st), {sum: () => -1}].map(stResult => stResult.sum()));
+    return Math.max(...[
+        -1,
+        ...Object.values(st).map(stResult => stResult.sum())
+    ]);
 };
 
 module.exports = maximumSum;
