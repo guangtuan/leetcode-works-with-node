@@ -4,17 +4,10 @@
  * @return {number[]}
  */
 var smallestTrimmedNumbers = function (nums, queries) {
-    function strToArray(num) {
-        return (num + "").split("").map(str => Number.parseInt(str)).reverse();
-    }
-
-    const inputs = nums.map(strToArray);
-    const ret = [];
-
-    function extracted(ele1, ele2) {
-        for (let i = 0; i < ele1.value.length; i++) {
-            let val1 = ele1.value[i];
-            let val2 = ele2.value[i];
+    function compareNumberStr(numberStr1, numberStr2) {
+        for (let i = 0; i < numberStr1.length; i++) {
+            let val1 = numberStr1[i];
+            let val2 = numberStr2[i];
             if (val1 !== val2) {
                 return val1 - val2;
             }
@@ -22,19 +15,18 @@ var smallestTrimmedNumbers = function (nums, queries) {
         return 0;
     }
 
-    for (let query of queries) {
+    return queries.map(query => {
         let [arrange, position] = query;
-        const withIndex = inputs.map((input, index) => {
-            const cut = input.slice(0, position);
+        const withIndex = nums.map((input, index) => {
+            const cut = input.substring(input.length - position, input.length);
             return {
-                value: cut.reverse(),
+                value: cut,
                 index
             }
         });
-        withIndex.sort((ele1, ele2) => extracted(ele1, ele2));
-        ret.push(withIndex[arrange- 1].index);
-    }
-    return ret;
+        withIndex.sort((ele1, ele2) => compareNumberStr(ele1.value, ele2.value));
+        return withIndex[arrange - 1].index;
+    })
 };
 
 module.exports = smallestTrimmedNumbers;
