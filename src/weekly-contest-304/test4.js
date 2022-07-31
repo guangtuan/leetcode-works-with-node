@@ -11,7 +11,7 @@ const loadData = f => {
 
 const testCases = [
     {
-        input: loadData('./testcase.js'),
+        input: loadData('./testcase.json'),
         expected: 43242
     },
     {

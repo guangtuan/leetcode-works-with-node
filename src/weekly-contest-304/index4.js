@@ -1,17 +1,14 @@
-
 /**
  * @param {number[]} edges
  * @return {number}
  */
 var longestCycle = function (edges) {
     const globalMap = {};
-    class Node {
+    class Access {
         constructor(val) {
-            this.val = val;
-            this.path = [val];
-            this.visits = {
-                [val]: 1
-            };
+            this.path = [];
+            this.visits = {};
+            this.add(val);
         }
         add(val) {
             this.path.push(val);
@@ -20,70 +17,39 @@ var longestCycle = function (edges) {
         lastAccess() {
             return this.path[this.path.length - 1];
         }
-        assignGlobal(len) {
-            for (let ele of this.path) {
-                globalMap[ele] = len;
-            }
-        }
-        findCycle(edges) {
-            const nextVal = edges[this.lastAccess()];
-            if (nextVal === -1) {
-                return {
-                    result: false,
-                    len: -2,
-                    nextVal
-                };
-            }
-            if (this.visits[nextVal]) {
-                // console.log(print(this));
-                return {
-                    result: true,
-                    len: this.path.length - this.visits[nextVal] + 1,
-                    nextVal
-                }
-            } else {
-                this.add(nextVal);
-                return {
-                    result: false,
-                    len: -1,
-                    nextVal
-                }
-            }
+    }
+    const assignGlobal = (len, node) => {
+        for (let ele of node.path) {
+            globalMap[ele] = len;
         }
     }
-    function print(node) {
-        return JSON.stringify({ v: node.visits, p: node.path, val: node.val });
-    }
-    function getCycle(node, edges) {
+    function getCycle(access, edges) {
         while (true) {
-            if (globalMap[node.lastAccess()]) {
-                // console.log("hit global", print(node));
-                return {
-                    result: true,
-                    len: globalMap[node.lastAccess()],
-                    nextVal: node.val
-                };
+            const lastAccess = access.lastAccess();
+            if (globalMap[lastAccess]) {
+                return globalMap[lastAccess];
             }
-            const { result, len, nextVal } = node.findCycle(edges);
-            if (len === -2) {
-                return { len, nextVal };
+            const nextVal = edges[lastAccess];
+            if (nextVal === -1) {
+                return -1;
             }
-            if (result) {
-                return { len, nextVal };
+            if (!access.visits[nextVal]) {
+                access.add(nextVal);
+            } else {
+                return access.path.length - access.visits[nextVal] + 1
             }
         }
     }
     let ans = -1;
-    for (let i = 0; i < edges.length; i++) {
-        if (edges[i] === -1) {
+    for (let ele of edges) {
+        if (ele === -1) {
             continue;
         }
-        const node = new Node(edges[i]);
-        const { len, nextVal } = getCycle(node, edges);
+        const access = new Access(ele);
+        const len = getCycle(access, edges);
         if (len > ans) {
             ans = len;
-            globalMap[nextVal] = len;
-            node.assignGlobal(len);
+            assignGlobal(len, access);
         }
     }
     return ans;
