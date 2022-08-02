@@ -13,80 +13,99 @@
  rear 4
  */
 var MyCircularQueue = function (k) {
-    this.arr = []
-    this.arr.length = k
-    this.tail = k - 1
-    this.head = 0
+  this.arr = [];
+  this.arr.length = k;
+  this.tail = k - 1;
+  this.head = 0;
+};
+
+const unset = (val) => {
+  return val === undefined || val === null;
+};
+
+MyCircularQueue.prototype.print = function () {
+  console.log(
+    JSON.stringify({ tail: this.tail, head: this.head, arr: this.arr })
+  );
 };
 
 MyCircularQueue.prototype.circle = function (val) {
-    if (val === this.arr.length - 1) {
-        return 0;
-    } else {
-        return val + 1;
-    }
+  if (val === this.arr.length - 1) {
+    return 0;
+  } else {
+    return val + 1;
+  }
 };
 
-/** 
+/**
  * @param {number} value
  * @return {boolean}
  */
 MyCircularQueue.prototype.enQueue = function (value) {
-    const nextIndex = this.circle(this.tail);
-    if (this.arr[nextIndex] !== undefined) {
-        return false;
-    } else {
-        this.arr[nextIndex] = value;
-        return true;
-    }
+  const nextIndex = this.circle(this.tail);
+  if (!unset(this.arr[nextIndex])) {
+    return false;
+  } else {
+    this.arr[nextIndex] = value;
+    this.tail = nextIndex;
+    return true;
+  }
 };
 
 /**
  * @return {boolean}
  */
 MyCircularQueue.prototype.deQueue = function () {
-    if (this.arr[this.head] === undefined) {
-        return false;
-    }
-    this.arr[this.head] = undefined;
-    this.head = this.circle(this.head);
-    return true;
+  if (unset(this.arr[this.head])) {
+    return false;
+  }
+  this.arr[this.head] = undefined;
+  this.head = this.circle(this.head);
+  return true;
 };
 
 /**
  * @return {number}
  */
 MyCircularQueue.prototype.Front = function () {
-    if (this.arr[this.head] === undefined) {
-        return -1;
-    }
-    return this.arr[this.head];
+  if (unset(this.arr[this.head])) {
+    return -1;
+  }
+  return this.arr[this.head];
 };
 
 /**
  * @return {number}
  */
 MyCircularQueue.prototype.Rear = function () {
-    if (this.arr[this.tail] === undefined) {
-        return -1;
-    }
-    return this.arr[this.tail];
+  if (unset(this.arr[this.tail])) {
+    return -1;
+  }
+  return this.arr[this.tail];
 };
 
 /**
  * @return {boolean}
  */
 MyCircularQueue.prototype.isEmpty = function () {
-    return this.arr[this.head] === undefined &&
-        this.arr[this.tail] === undefined
+  for (let ele of this.arr) {
+    if (!unset(ele)) {
+      return false;
+    }
+  }
+  return true;
 };
 
 /**
  * @return {boolean}
  */
 MyCircularQueue.prototype.isFull = function () {
-    return this.arr[this.head] !== undefined &&
-        this.arr[this.tail] !== undefined
+  for (let ele of this.arr) {
+    if (unset(ele)) {
+      return false;
+    }
+  }
+  return true;
 };
 
 /**
@@ -99,3 +118,5 @@ MyCircularQueue.prototype.isFull = function () {
  * var param_5 = obj.isEmpty()
  * var param_6 = obj.isFull()
  */
+
+module.exports = MyCircularQueue;
