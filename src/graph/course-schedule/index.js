@@ -41,10 +41,8 @@ var canFinish = function (numCourses, prerequisites) {
     //     {}
     // )
     for (let ele of Object.keys(m)) {
-        if (state[ele] !== 'done') {
-            if (hasCycle(ele, m)) {
-                return false
-            }
+        if (hasCycle(ele, m)) {
+            return false
         }
     }
     return true
