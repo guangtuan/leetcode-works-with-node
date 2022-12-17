@@ -3,21 +3,23 @@ var ATM = function () {
     this.inner = [0, 0, 0, 0, 0];
 };
 
+const sizes = [[0, 20], [1, 50], [2, 100], [3, 200], [4, 500]];
+
 /** 
  * @param {number[]} banknotesCount
  * @return {void}
  */
 ATM.prototype.deposit = function (banknotesCount) {
-    this.inner = this.inner.map((val, index) => {
-        return val + banknotesCount[index];
-    });
+    for (let i in this.inner) {
+        this.inner[i] = this.inner[i] + banknotesCount[i]
+    }
 };
 
-function handle(atm, sizes, input) {
+function handle(atm, input) {
     let rollback = [...atm.inner];
     let ret = [0, 0, 0, 0, 0];
-    while (sizes.length != 0) {
-        let [idx, size] = sizes.pop();
+    for (let i = sizes.length - 1; i >= 0; i--) {
+        let [idx, size] = sizes[i];
         if (input >= size) {
             let req = Math.floor(input / size);
             if (req <= atm.inner[idx]) {
@@ -33,7 +35,7 @@ function handle(atm, sizes, input) {
             return ret;
         }
     }
-    atm.inner = [...rollback];
+    atm.inner = rollback;
     return [-1];
 }
 
@@ -45,7 +47,6 @@ ATM.prototype.withdraw = function (amount) {
     let input = amount;
     return handle(
         this,
-        [[0, 20], [1, 50], [2, 100], [3, 200], [4, 500]],
         input
     );
 };
