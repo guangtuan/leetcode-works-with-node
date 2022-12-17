@@ -21,7 +21,9 @@ const assert = require('assert');
 const resolve = require('./index');
 
 describe('Majority Element', () => {
-    testCases.forEach(({ input, output }) => {
-        assert.equal(output, resolve(input));
-    });
+    it("", () => {
+        testCases.forEach(({ input, output }) => {
+            assert.equal(output, resolve(input));
+        });
+    })
 });

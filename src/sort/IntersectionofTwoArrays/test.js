@@ -17,7 +17,9 @@ const assert = require('assert');
 
 describe("Intersection of Two Arrays", () => {
     testCases.forEach(({a, b, output}) => {
-        const actual = resolve(a, b);
-        assert.deepEqual(actual.sort(), output.sort());
+        it("", () => {
+            const actual = resolve(a, b);
+            assert.deepEqual(actual.sort(), output.sort());
+        })
     });
 });

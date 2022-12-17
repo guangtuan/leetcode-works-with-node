@@ -20,6 +20,8 @@ const verify = assert => arr => {
 
 describe("#922. Sort Array By Parity II", () => {
     objects.forEach(object => {
-        verify(assert)(resolve(object));
+        it("", () => {
+            verify(assert)(resolve(object));
+        })
     });
 });
