@@ -4,24 +4,27 @@
  * @return {number[]}
  */
 var selfDividingNumbers = function (left, right) {
-    const valid = number => {
+    const valid = (number) => {
         if (number < 10) {
-            return true;
+            return true
         }
-        let len = Math.floor(Math.log10(number));
-        let remain = number;
+        let len = Math.floor(Math.log10(number))
+        let remain = number
         while (len >= 0) {
-            let divider = Math.pow(10, len);
-            let curr = Math.floor(remain / divider);
-            remain = remain - curr * divider;
+            let divider = Math.pow(10, len)
+            let curr = Math.floor(remain / divider)
+            remain = remain - curr * divider
             if (number % curr !== 0) {
-                return false;
+                return false
             }
-            len--;
+            len--
         }
-        return true;
+        return true
     }
-    return Array((right - left + 1)).fill(null).map((val, index) => index + left).filter(i => valid(i));
-};
+    return Array(right - left + 1)
+        .fill(null)
+        .map((val, index) => index + left)
+        .filter((i) => valid(i))
+}
 
-module.exports = selfDividingNumbers;
+module.exports = selfDividingNumbers

@@ -8,19 +8,19 @@ var canFinish = function (numCourses, prerequisites) {
     // node -> nodes
     const state = {}
     function hasCycle(node, nodes) {
-        if (state[node] === "done") {
+        if (state[node] === 'done') {
             return false
         }
-        if (state[node] === "loading") {
+        if (state[node] === 'loading') {
             return true
         }
-        state[node] = "loading"
-        for (let ele of (nodes[node] || [])) {
+        state[node] = 'loading'
+        for (let ele of nodes[node] || []) {
             if (hasCycle(ele, nodes)) {
                 return true
             }
         }
-        state[node] = "done"
+        state[node] = 'done'
         return false
     }
     const m = {}
@@ -46,6 +46,6 @@ var canFinish = function (numCourses, prerequisites) {
         }
     }
     return true
-};
+}
 
 module.exports = canFinish

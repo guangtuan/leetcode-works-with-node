@@ -12,26 +12,26 @@
  * @return {number}
  */
 var rangeSumBST = function (root, L, R) {
-    let result = 0;
-    const walk = root => {
+    let result = 0
+    const walk = (root) => {
         if (root.left !== null) {
-            walk(root.left);
+            walk(root.left)
         }
         if (L <= root.val) {
             if (root.val <= R) {
-                result += root.val;
+                result += root.val
             }
         } else {
             if (root.val > R) {
-                return;
+                return
             }
         }
         if (root.right !== null) {
-            walk(root.right);
+            walk(root.right)
         }
     }
-    walk(root);
-    return result;
-};
+    walk(root)
+    return result
+}
 
-module.exports = rangeSumBST;
+module.exports = rangeSumBST

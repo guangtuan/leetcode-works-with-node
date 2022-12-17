@@ -12,4 +12,4 @@ f(n) = getMax(f(n - 1), a[n] + a[n -2]);
 
 ### reference
 
-- [house-robber](https://leetcode.com/problems/house-robber/description/)
+-   [house-robber](https://leetcode.com/problems/house-robber/description/)

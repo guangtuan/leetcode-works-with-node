@@ -6,21 +6,21 @@ var isValid = function (s) {
     const map = {
         '[': ']',
         '{': '}',
-        '(': ')'
-    };
-    const stack = [];
+        '(': ')',
+    }
+    const stack = []
     for (const current of s) {
         if (map[current]) {
-            stack.push(current);
-            continue;
+            stack.push(current)
+            continue
         }
         if (map[stack[stack.length - 1]] === current) {
-            stack.pop();
-            continue;
+            stack.pop()
+            continue
         }
-        return false;
+        return false
     }
-    return stack.length === 0;
-};
+    return stack.length === 0
+}
 
-module.exports = isValid;
+module.exports = isValid

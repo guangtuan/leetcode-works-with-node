@@ -5,7 +5,7 @@ const testCases = [
         { input: [10, 40], output: true },
         { input: [5, 15], output: false },
         { input: [5, 10], output: true },
-        { input: [25, 55], output: true }
+        { input: [25, 55], output: true },
     ],
     [
         { input: [47, 50], output: true },
@@ -22,7 +22,7 @@ const testCases = [
         { input: [23, 28], output: false },
         { input: [21, 27], output: false },
         { input: [47, 50], output: true },
-        { input: [14, 21], output: false }
+        { input: [14, 21], output: false },
     ],
     [
         { input: [12, 26], output: true },
@@ -84,30 +84,29 @@ const testCases = [
         { input: [47, 57], output: false },
         { input: [96, 100], output: false },
         { input: [67, 84], output: false },
-        { input: [53, 66], output: false }
-    ]
-];
+        { input: [53, 66], output: false },
+    ],
+]
 
+const MyCalendarTwo = require('./index')
 
-const MyCalendarTwo = require('./index');
+const assert = require('assert')
 
-const assert = require('assert');
-
-const getProp = prop => obj => obj[prop];
+const getProp = (prop) => (obj) => obj[prop]
 
 describe('#my calendar two', () => {
-    testCases.forEach(pairs => {
+    testCases.forEach((pairs) => {
         const input = pairs.map(getProp('input'))
         const output = pairs.map(getProp('output'))
         it(`input: ${JSON.stringify(input)}\noutputs is ${output}`, () => {
-            const obj = new MyCalendarTwo();
+            const obj = new MyCalendarTwo()
             pairs.forEach(({ input: [start, end], output }) => {
-                const result = obj.book(start, end);
+                const result = obj.book(start, end)
                 // console.log('insert', start, end);
                 // console.log('result is', result);
                 // console.log(JSON.stringify(obj));
-                assert.equal(output, result);
-            });
-        });
-    });
-});
+                assert.equal(output, result)
+            })
+        })
+    })
+})

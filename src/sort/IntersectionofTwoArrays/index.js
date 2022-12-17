@@ -3,19 +3,19 @@
  * @param {number[]} nums2
  * @return {number[]}
  */
-var intersection = function(nums1, nums2) {
-    let map = {};
+var intersection = function (nums1, nums2) {
+    let map = {}
     nums1.forEach((num) => {
-        map[num] = true;
-    });
-    let result = [];
+        map[num] = true
+    })
+    let result = []
     nums2.forEach((num) => {
         if (map[num]) {
-            result.push(num);
-            map[num] = false;
+            result.push(num)
+            map[num] = false
         }
-    });
-    return result;
-};
+    })
+    return result
+}
 
-module.exports = intersection;
+module.exports = intersection

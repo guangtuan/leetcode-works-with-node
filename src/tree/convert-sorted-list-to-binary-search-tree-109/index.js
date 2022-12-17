@@ -13,10 +13,9 @@
  * }
  */
 
-
 function TreeNode(val) {
-    this.val = val;
-    this.left = this.right = null;
+    this.val = val
+    this.left = this.right = null
 }
 /**
  * @param {ListNode} head
@@ -24,29 +23,29 @@ function TreeNode(val) {
  */
 var sortedListToBST = function (head) {
     if (head === null) {
-        return null;
+        return null
     }
-    const listToArray = head => {
-        const array = [];
-        array.push(head.val);
+    const listToArray = (head) => {
+        const array = []
+        array.push(head.val)
         while (head.next != null) {
-            array.push(head.next.val);
-            head = head.next;
+            array.push(head.next.val)
+            head = head.next
         }
-        return array;
+        return array
     }
     const subTree = (array, left, right) => {
         if (left > right) {
-            return null;
+            return null
         }
-        const middle = left + Math.floor((right - left) / 2);
-        const root = new TreeNode(array[middle]);
-        root.left = subTree(array, left, middle - 1);
-        root.right = subTree(array, middle + 1, right);
-        return root;
+        const middle = left + Math.floor((right - left) / 2)
+        const root = new TreeNode(array[middle])
+        root.left = subTree(array, left, middle - 1)
+        root.right = subTree(array, middle + 1, right)
+        return root
     }
-    const array = listToArray(head);
-    return subTree(array, 0, array.length - 1);
-};
+    const array = listToArray(head)
+    return subTree(array, 0, array.length - 1)
+}
 
-module.exports = sortedListToBST;
+module.exports = sortedListToBST

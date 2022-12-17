@@ -1,57 +1,59 @@
-const assert = require('assert');
-const resolve = require('./index');
+const assert = require('assert')
+const resolve = require('./index')
 
 const testCases = [
     {
         input: {
             A: 'ab',
-            B: 'ba'
+            B: 'ba',
         },
-        output: true
+        output: true,
     },
     {
         input: {
             A: 'ab',
-            B: 'ab'
+            B: 'ab',
         },
-        output: false
+        output: false,
     },
     {
         input: {
             A: 'aa',
-            B: 'aa'
+            B: 'aa',
         },
-        output: true
+        output: true,
     },
     {
         input: {
             A: 'aaaaaaabc',
-            B: 'aaaaaaacb'
+            B: 'aaaaaaacb',
         },
-        output: true
+        output: true,
     },
     {
         input: {
             A: '',
-            B: 'aa'
+            B: 'aa',
         },
-        output: false
+        output: false,
     },
     {
         input: {
             A: 'abab',
-            B: 'abab'
+            B: 'abab',
         },
-        output: true
-    }
-];
+        output: true,
+    },
+]
 
 const run = ({ input, output }) => {
-    it(`input is ${JSON.stringify(input)}, expected output is ${output}`, () => {
-        assert.equal(resolve(input.A, input.B), output);
-    });
-};
+    it(`input is ${JSON.stringify(
+        input,
+    )}, expected output is ${output}`, () => {
+        assert.equal(resolve(input.A, input.B), output)
+    })
+}
 
-describe("buddy Strings", () => {
-    testCases.forEach(run);
-});
+describe('buddy Strings', () => {
+    testCases.forEach(run)
+})

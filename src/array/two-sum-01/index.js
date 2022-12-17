@@ -4,15 +4,15 @@
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-    const map = {};
+    const map = {}
     for (let i = 0; i < nums.length; i++) {
-        const num = nums[i];
-        if (typeof map[num] !== "undefined") {
-            return [map[num], i];
+        const num = nums[i]
+        if (typeof map[num] !== 'undefined') {
+            return [map[num], i]
         }
-        map[target - num] = i;
+        map[target - num] = i
     }
-    return [];
-};
+    return []
+}
 
-module.exports = twoSum;
+module.exports = twoSum

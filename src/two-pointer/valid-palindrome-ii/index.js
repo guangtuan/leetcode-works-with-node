@@ -7,44 +7,44 @@ var validPalindrome = function (s) {
     // 如果遇到不一样，则使用删除机会
     // 机会用完，返回 false
     // l === r 或者 l 和 r 差一，则返回 true
-    return create("l")(s) || create("r")(s);
-};
+    return create('l')(s) || create('r')(s)
+}
 
 function create(dir) {
     return function (s) {
         let l = 0
         let r = s.length - 1
         let use = false
-        while ((r - l) >= 0) {
+        while (r - l >= 0) {
             if (s.charAt(l) === s.charAt(r)) {
-                l++;
-                r--;
+                l++
+                r--
             } else {
                 if (use) {
-                    return false;
+                    return false
                 }
-                if (dir === "l") {
+                if (dir === 'l') {
                     if (s.charAt(l) === s.charAt(r - 1)) {
-                        r--;
+                        r--
                     } else if (s.charAt(l + 1) === s.charAt(r)) {
-                        l++;
+                        l++
                     } else {
-                        return false;
+                        return false
                     }
                 } else {
                     if (s.charAt(l + 1) === s.charAt(r)) {
-                        l++;
+                        l++
                     } else if (s.charAt(l) === s.charAt(r - 1)) {
-                        r--;
+                        r--
                     } else {
-                        return false;
+                        return false
                     }
                 }
                 use = true
             }
         }
-        return true;
+        return true
     }
 }
 
-module.exports = validPalindrome;
+module.exports = validPalindrome

@@ -14,40 +14,40 @@
  已完成的总旅途数为 4 + 2 + 1 = 7 。
  */
 var minimumTime = function (time, totalTrips) {
-    let left = 0;
-    let right = Math.min(...time) * totalTrips;
+    let left = 0
+    let right = Math.min(...time) * totalTrips
     const cal = (count, time) => {
-        let ret = 0;
+        let ret = 0
         for (let t of time) {
-            let forOneCar = Math.floor(count / t);
-            ret += forOneCar;
+            let forOneCar = Math.floor(count / t)
+            ret += forOneCar
         }
-        return ret;
+        return ret
     }
     while (left < right) {
         if (left === right) {
             while (left > 0 && cal(left, time) >= totalTrips) {
-                left--;
+                left--
             }
-            return left + 1;
+            return left + 1
         }
         if (right - left === 1) {
             if (cal(left, time) >= totalTrips) {
-                return left;
+                return left
             }
             while (cal(right, time) < totalTrips) {
-                right++;
+                right++
             }
-            return right;
+            return right
         }
-        let middle = Math.floor((left + right) / 2);
+        let middle = Math.floor((left + right) / 2)
         if (cal(middle, time) < totalTrips) {
-            left = middle + 1;
+            left = middle + 1
         } else {
-            right = middle;
+            right = middle
         }
     }
-    return left;
-};
+    return left
+}
 
-module.exports = minimumTime;
+module.exports = minimumTime

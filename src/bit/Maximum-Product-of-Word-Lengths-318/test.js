@@ -1,30 +1,27 @@
 const testCases = [
     {
-        input: ["abcw", "baz", "foo", "bar", "xtfn", "abcdef"],
-        output: 16
+        input: ['abcw', 'baz', 'foo', 'bar', 'xtfn', 'abcdef'],
+        output: 16,
     },
     {
-        input: ["a", "ab", "abc", "d", "cd", "bcd", "abcd"],
-        output: 4
+        input: ['a', 'ab', 'abc', 'd', 'cd', 'bcd', 'abcd'],
+        output: 4,
     },
     {
-        input: ["a", "aa", "aaa", "aaaa"],
-        output: 0
-    }
-];
+        input: ['a', 'aa', 'aaa', 'aaaa'],
+        output: 0,
+    },
+]
 
-const assert = require('assert');
-const resolve = require('./index');
+const assert = require('assert')
+const resolve = require('./index')
 
-console.time("me");
+console.time('me')
 describe('Maximum Product of Word Lengths', () => {
-    testCases.forEach(({input, output}) => {
+    testCases.forEach(({ input, output }) => {
         it(`input is ${input}, output is ${output}`, () => {
-            assert.equal(
-                output,
-                resolve(input)
-            );
-        });
-    });
-});
-console.timeEnd("me");
+            assert.equal(output, resolve(input))
+        })
+    })
+})
+console.timeEnd('me')

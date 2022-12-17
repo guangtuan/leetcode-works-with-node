@@ -3,14 +3,14 @@
  * @param {string} pref
  * @return {number}
  */
-var prefixCount = function(words, pref) {
-    let i = 0;
+var prefixCount = function (words, pref) {
+    let i = 0
     for (let word of words) {
         if (word.startsWith(pref)) {
-            i++;
+            i++
         }
     }
-    return i;
-};
+    return i
+}
 
-module.exports = prefixCount;
+module.exports = prefixCount

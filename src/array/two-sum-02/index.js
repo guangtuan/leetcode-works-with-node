@@ -4,19 +4,19 @@
  * @return {number[]}
  */
 var twoSum = function (numbers, target) {
-    let start = 0;
-    let end = numbers.length - 1;
+    let start = 0
+    let end = numbers.length - 1
     while (start < end) {
         if (numbers[start] + numbers[end] > target) {
-            end = end - 1;
+            end = end - 1
         }
         if (numbers[start] + numbers[end] < target) {
-            start = start + 1;
+            start = start + 1
         }
         if (numbers[start] + numbers[end] === target) {
-            return [start + 1, end + 1];
+            return [start + 1, end + 1]
         }
     }
-};
+}
 
-module.exports = twoSum;
+module.exports = twoSum

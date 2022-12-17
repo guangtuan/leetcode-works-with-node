@@ -1,27 +1,27 @@
 var levelOrder = function (root) {
-    const colletors = [];
+    const colletors = []
     function walk(cursors) {
         if (cursors.length === 0) {
-            return;
+            return
         }
-        const next = [];
-        const currentLevel = [];
+        const next = []
+        const currentLevel = []
         for (let cursor of cursors) {
-            currentLevel.push(cursor.val);
+            currentLevel.push(cursor.val)
             if (cursor.left !== null) {
-                next.push(cursor.left);
+                next.push(cursor.left)
             }
             if (cursor.right !== null) {
-                next.push(cursor.right);
+                next.push(cursor.right)
             }
         }
-        colletors.push(currentLevel);
-        walk(next);
+        colletors.push(currentLevel)
+        walk(next)
     }
     if (root !== null) {
-        walk([root]);
+        walk([root])
     }
-    return colletors;
+    return colletors
 }
 
 // colletors.push(cursors.map(({ val }) => val));
@@ -31,4 +31,4 @@ var levelOrder = function (root) {
 //     .filter(_ => _ !== null)
 // );
 
-module.exports = levelOrder;
+module.exports = levelOrder

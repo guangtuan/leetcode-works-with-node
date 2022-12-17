@@ -3,37 +3,37 @@
  * @return {number}
  */
 var countDistinctIntegers = function (nums) {
-    const eachBit = number => {
+    const eachBit = (number) => {
         if (number < 10) {
-            return [number];
+            return [number]
         }
-        const mod = number % 10;
-        return [mod, ...eachBit(Math.floor(number / 10))];
+        const mod = number % 10
+        return [mod, ...eachBit(Math.floor(number / 10))]
     }
     const reverse = (() => {
-        const cache = {};
+        const cache = {}
         return (n) => {
             if (cache[n]) {
-                return cache[n];
+                return cache[n]
             }
-            const bits = eachBit(n);
-            let res = 0;
-            let len = bits.length - 1;
+            const bits = eachBit(n)
+            let res = 0
+            let len = bits.length - 1
             for (let i of bits) {
-                res += (10 ** len) * i;
-                len--;
+                res += 10 ** len * i
+                len--
             }
-            cache[n] = res;
-            return res;
+            cache[n] = res
+            return res
         }
-    })();
-    const set = new Set();
+    })()
+    const set = new Set()
     for (let num of nums) {
-        set.add(num);
+        set.add(num)
         console.log(`reverse ${num} to ${reverse(num)}`)
-        set.add(reverse(num));
+        set.add(reverse(num))
     }
-    return set.size;
-};
+    return set.size
+}
 
-module.exports = countDistinctIntegers;
+module.exports = countDistinctIntegers

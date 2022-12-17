@@ -1,12 +1,12 @@
-const resolve = require('./index');
-const assert = require('assert');
+const resolve = require('./index')
+const assert = require('assert')
 
 const testCases = [
     {
         input: {
             total: 10,
             cost1: 2,
-            cost2: 5
+            cost2: 5,
         },
         expected: 10,
     },
@@ -14,7 +14,7 @@ const testCases = [
         input: {
             total: 20,
             cost1: 10,
-            cost2: 5
+            cost2: 5,
         },
         expected: 9,
     },
@@ -22,7 +22,7 @@ const testCases = [
         input: {
             total: 5,
             cost1: 10,
-            cost2: 10
+            cost2: 10,
         },
         expected: 1,
     },
@@ -34,19 +34,21 @@ const testCases = [
     //     },
     //     expected: 1,
     // },
-];
+]
 
 describe('number-of-ways-to-buy-pens-and-pencils', () => {
-    testCases.forEach(testCase => {
-        it(`input ${JSON.stringify(testCase.input)}, expected is ${testCase.expected}`, () => {
+    testCases.forEach((testCase) => {
+        it(`input ${JSON.stringify(testCase.input)}, expected is ${
+            testCase.expected
+        }`, () => {
             assert.equal(
                 resolve(
                     testCase.input.total,
                     testCase.input.cost1,
                     testCase.input.cost2,
                 ),
-                testCase.expected
-            );
-        });
-    });
-});
+                testCase.expected,
+            )
+        })
+    })
+})

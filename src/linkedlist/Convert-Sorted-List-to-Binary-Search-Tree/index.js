@@ -17,18 +17,18 @@
  * @return {TreeNode}
  */
 var sortedListToBST = function (head) {
-    let getMiddle = head => {
-        let fast = head;
-        let slow = head;
+    let getMiddle = (head) => {
+        let fast = head
+        let slow = head
         while (fast) {
-            fast = fast.next;
+            fast = fast.next
             if (fast) {
-                slow = slow.next;
-                fast = fast.next;
+                slow = slow.next
+                fast = fast.next
             } else {
-                break;
+                break
             }
         }
-        return slow;
+        return slow
     }
-};
+}

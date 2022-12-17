@@ -7,11 +7,11 @@ var arrayPairSum = function (nums) {
         .sort((a, b) => a - b)
         .reduce((acc, currentValue, currentIndex) => {
             if (currentIndex % 2 === 0) {
-                return acc + currentValue;
+                return acc + currentValue
             } else {
-                return acc;
+                return acc
             }
-        }, 0);
-};
+        }, 0)
+}
 
-module.exports = arrayPairSum;
+module.exports = arrayPairSum

@@ -1,33 +1,33 @@
-const resolve = require('./index');
-const assert = require('assert');
+const resolve = require('./index')
+const assert = require('assert')
 
 const testCases = [
     {
         input: '()',
-        output: true
+        output: true,
     },
     {
         input: '()[]{}',
-        output: true
+        output: true,
     },
     {
         input: '(]',
-        output: false
+        output: false,
     },
     {
         input: '([)]',
-        output: false
+        output: false,
     },
     {
         input: '{[]}',
-        output: true
-    }
-];
+        output: true,
+    },
+]
 
-describe("valid-parentheses-20", () => {
+describe('valid-parentheses-20', () => {
     testCases.forEach(({ input, output }) => {
         it(`input is ${input}, output is ${output}`, () => {
-            assert.equal(resolve(input), output);
+            assert.equal(resolve(input), output)
         })
-    });
-});
+    })
+})

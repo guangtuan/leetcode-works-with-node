@@ -10,15 +10,15 @@
  * @param {ListNode} head
  * @return {boolean}
  */
-var hasCycle = function(head) {
-  while (head) {
-    if (head.accessed) {
-      return true;
+var hasCycle = function (head) {
+    while (head) {
+        if (head.accessed) {
+            return true
+        }
+        head.accessed = true
+        head = head.next
     }
-    head.accessed = true;
-    head = head.next;
-  }
-  return false;
-};
+    return false
+}
 
-module.exports = hasCycle;
+module.exports = hasCycle

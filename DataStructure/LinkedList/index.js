@@ -1,7 +1,7 @@
-const ListNode = require('./ListNode');
-const LinkedList = require('./LinkedList');
+const ListNode = require('./ListNode')
+const LinkedList = require('./LinkedList')
 
 module.exports = {
-  ListNode: ListNode,
-  LinkedList: LinkedList
+    ListNode: ListNode,
+    LinkedList: LinkedList,
 }

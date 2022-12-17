@@ -3,19 +3,19 @@
  * @return {number}
  */
 var minAddToMakeValid = function (S) {
-    const stack = [];
+    const stack = []
     for (let c of S) {
         if (c === '(') {
-            stack.push(c);
-            continue;
+            stack.push(c)
+            continue
         }
         if (stack[stack.length - 1] === '(') {
-            stack.pop();
-            continue;
+            stack.pop()
+            continue
         }
-        stack.push(c);
+        stack.push(c)
     }
-    return stack.length;
-};
+    return stack.length
+}
 
-module.exports = minAddToMakeValid;
+module.exports = minAddToMakeValid

@@ -11,23 +11,23 @@
  */
 var maxDepth = function (root) {
     if (root === null) {
-        return 0;
+        return 0
     }
     function getHeight(level, root) {
         if (root.left !== null) {
             if (root.right !== null) {
-                const leftHeight = getHeight(level + 1, root.left);
-                const rightHeight = getHeight(level + 1, root.right);
-                return Math.max(leftHeight, rightHeight);
+                const leftHeight = getHeight(level + 1, root.left)
+                const rightHeight = getHeight(level + 1, root.right)
+                return Math.max(leftHeight, rightHeight)
             }
-            return getHeight(level + 1, root.left);
+            return getHeight(level + 1, root.left)
         }
         if (root.right !== null) {
-            return getHeight(level + 1, root.right);
+            return getHeight(level + 1, root.right)
         }
-        return level;
+        return level
     }
-    return getHeight(1, root);
-};
+    return getHeight(1, root)
+}
 
-module.exports = maxDepth;
+module.exports = maxDepth

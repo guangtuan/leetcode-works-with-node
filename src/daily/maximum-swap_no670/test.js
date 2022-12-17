@@ -1,5 +1,5 @@
-const resolve = require('./index');
-const assert = require('assert');
+const resolve = require('./index')
+const assert = require('assert')
 
 const testCases = [
     {
@@ -22,12 +22,12 @@ const testCases = [
         input: 100000,
         expected: 100000,
     },
-];
+]
 
 describe('#670 -> maximum-swap', () => {
-    testCases.forEach(testCase => {
+    testCases.forEach((testCase) => {
         it(`input ${testCase.input}, expected is ${testCase.expected}`, () => {
-            assert.equal(resolve.call(null, testCase.input), testCase.expected);
-        });
-    });
-});
+            assert.equal(resolve.call(null, testCase.input), testCase.expected)
+        })
+    })
+})

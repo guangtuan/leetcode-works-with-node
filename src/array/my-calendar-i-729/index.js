@@ -1,36 +1,36 @@
 var MyCalendar = function () {
-    this.root = null;
-};
+    this.root = null
+}
 
-/** 
- * @param {number} start 
+/**
+ * @param {number} start
  * @param {number} end
  * @return {boolean}
  */
 MyCalendar.prototype.oldBook = function (start, end) {
     for (let { s, e } of this.ranges) {
         if (start === s) {
-            return false;
+            return false
         }
         if (end === e) {
-            return false;
+            return false
         }
         if (s < end && end < e) {
-            return false;
+            return false
         }
         if (s <= start && start < e) {
-            return false;
+            return false
         }
         if (start < s && e <= end) {
-            return false;
+            return false
         }
     }
     this.ranges.push({
         s: start,
-        e: end
-    });
-    return true;
-};
+        e: end,
+    })
+    return true
+}
 
 let insert = (root, start, end) => {
     if (root.end <= start) {
@@ -39,11 +39,11 @@ let insert = (root, start, end) => {
                 start: start,
                 end: end,
                 left: null,
-                right: null
+                right: null,
             }
             return true
         } else {
-            return insert(root.right, start, end);
+            return insert(root.right, start, end)
         }
     } else if (root.start >= end) {
         if (root.left === null) {
@@ -51,14 +51,14 @@ let insert = (root, start, end) => {
                 start: start,
                 end: end,
                 left: null,
-                right: null
+                right: null,
             }
             return true
         } else {
-            return insert(root.left, start, end);
+            return insert(root.left, start, end)
         }
     }
-    return false;
+    return false
 }
 
 MyCalendar.prototype.book = function (start, end) {
@@ -67,12 +67,12 @@ MyCalendar.prototype.book = function (start, end) {
             start: start,
             end: end,
             left: null,
-            right: null
+            right: null,
         }
-        return true;
+        return true
     } else {
-        return insert(this.root, start, end);
+        return insert(this.root, start, end)
     }
-};
+}
 
-module.exports = MyCalendar;
+module.exports = MyCalendar

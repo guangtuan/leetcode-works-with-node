@@ -4,39 +4,39 @@
  */
 var checkPossibility = function (nums) {
     if (nums.length === 1) {
-        return true;
+        return true
     }
     function preAndPostNot(i, j, nums) {
-        let preNot, postNot;
+        let preNot, postNot
         if (i - 1 >= 0) {
             if (nums[j] - nums[i - 1] <= 0) {
-                preNot = true;
+                preNot = true
             }
         }
         if (j + 1 < nums.length) {
             if (nums[j + 1] - nums[i] <= 0) {
-                postNot = true;
+                postNot = true
             }
         }
-        return preNot && postNot;
+        return preNot && postNot
     }
-    let i = 0;
-    let j = i + 1;
-    let modified = false;
+    let i = 0
+    let j = i + 1
+    let modified = false
     while (j < nums.length) {
         if (nums[i] > nums[j]) {
             if (modified) {
-                return false;
+                return false
             }
             if (preAndPostNot(i, j, nums)) {
-                return false;
+                return false
             }
-            modified = true;
+            modified = true
         }
-        i++;
-        j++;
+        i++
+        j++
     }
-    return true;
-};
+    return true
+}
 
-module.exports = checkPossibility;
+module.exports = checkPossibility

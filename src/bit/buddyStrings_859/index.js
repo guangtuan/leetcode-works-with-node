@@ -5,31 +5,34 @@
  */
 var buddyStrings = function (A, B) {
     if (A.length !== B.length) {
-        return false;
+        return false
     }
     if (A === B) {
-        const st = {};
+        const st = {}
         for (let c of A) {
             if (st[c]) {
-                return true;
+                return true
             } else {
-                st[c] = true;
+                st[c] = true
             }
         }
     }
-    const diffIndex = [];
+    const diffIndex = []
     for (let i = 0; i < A.length; i++) {
         if (A.charCodeAt(i) ^ B.charCodeAt(i)) {
-            diffIndex.push(i);
+            diffIndex.push(i)
             if (diffIndex.length > 2) {
-                return false;
+                return false
             }
         }
     }
     if (diffIndex.length === 2) {
-        return A[diffIndex[0]] === B[diffIndex[1]] && A[diffIndex[1]] === B[diffIndex[0]];
+        return (
+            A[diffIndex[0]] === B[diffIndex[1]] &&
+            A[diffIndex[1]] === B[diffIndex[0]]
+        )
     }
-    return false;
-};
+    return false
+}
 
-module.exports = buddyStrings;
+module.exports = buddyStrings

@@ -3,12 +3,12 @@ const testCases = [
     [
         { input: [10, 20], output: true },
         { input: [15, 25], output: false },
-        { input: [20, 30], output: true }
+        { input: [20, 30], output: true },
     ],
     [
         { input: [10, 20], output: true },
         { input: [20, 30], output: true },
-        { input: [29, 30], output: false }
+        { input: [29, 30], output: false },
     ],
     [
         { input: [47, 50], output: true },
@@ -20,37 +20,37 @@ const testCases = [
         { input: [19, 25], output: true },
         { input: [3, 8], output: true },
         { input: [8, 13], output: true },
-        { input: [18, 27], output: false }
+        { input: [18, 27], output: false },
     ],
     [
         { input: [37, 50], output: true },
         { input: [33, 50], output: false },
         { input: [4, 17], output: true },
         { input: [35, 48], output: false },
-        { input: [8, 25], output: false }
+        { input: [8, 25], output: false },
     ],
     [
         { input: [37, 50], output: true },
         { input: [33, 50], output: false },
         { input: [4, 17], output: true },
         { input: [35, 48], output: false },
-        { input: [3, 18], output: false }
-    ]
-];
+        { input: [3, 18], output: false },
+    ],
+]
 
-const assert = require('assert');
+const assert = require('assert')
 
-const getProp = prop => obj => obj[prop];
+const getProp = (prop) => (obj) => obj[prop]
 
 describe('#my calendar 1', () => {
-    testCases.forEach(pairs => {
+    testCases.forEach((pairs) => {
         const input = pairs.map(getProp('input'))
         const output = pairs.map(getProp('output'))
         it(`input: ${JSON.stringify(input)}\noutputs is ${output}`, () => {
-            const obj = new MyCalendar();
+            const obj = new MyCalendar()
             pairs.forEach(({ input: [start, end], output }) => {
-                assert.equal(output, obj.book(start, end));
-            });
-        });
-    });
-});
+                assert.equal(output, obj.book(start, end))
+            })
+        })
+    })
+})
