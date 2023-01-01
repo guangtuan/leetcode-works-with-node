@@ -4,22 +4,28 @@
  * @return {string}
  */
 var discountPrices = function (sentence, discount) {
-    const isNotDigit = (c, idx, arr) => {
-        return c < '0' || c > '9'
-    }
+    const isNotDigit = (c) => c < '0' || c > '9'
+    const getValue = (c) => c - '0'
     const convert = (str) => {
-        if (!str.startsWith('$')) {
+        if (str.length === 1) {
             return str
         }
-        const suffix = str.substring(1)
-        if (suffix.length === 0) {
-            return str
+        let ret = 0
+        for (let i = 0; i < str.length; i++) {
+            const c = str.charAt(i)
+            if (i === 0) {
+                if (c !== '$') {
+                    return str
+                }
+            } else {
+                if (isNotDigit(c)) {
+                    return str
+                } else {
+                    ret += 10 ** (str.length - i - 1) * getValue(c)
+                }
+            }
         }
-        if (suffix.split('').some(isNotDigit)) {
-            return str
-        }
-        const p = Number.parseInt(suffix)
-        return '$' + (p - (p * discount) / 100).toFixed(2)
+        return '$' + (ret - (ret * discount) / 100).toFixed(2)
     }
     return sentence.split(' ').map(convert).join(' ')
 }
