@@ -2,19 +2,23 @@
  * @param {number} num
  * @return {number}
  */
-var findComplement = function (num: number) {
-    const bits = (num >>> 0).toString(2)
-    const result = []
-    for (let bit of bits) {
-        result.push(bit === '1' ? '0' : '1')
+function findComplement(num: number) {
+    const s = (
+        Array(32)
+            .fill(0)
+            .map((_v, index, array) => array.length - index - 1)
+            .find(ele => ((num >> ele) & 1) !== 0)
+    ) || -1;
+    let ans = 0;
+    for (let i = 0; i < s; i++) {
+        // 如果该位是 0
+        if (((num >> i) & 1) === 0) {
+            // 0b01 | 0b10 = 0b11
+            // 则填上 1
+            ans |= (1 << i);
+        };
     }
-    return result.reduceRight(
-        (acc, currentValue, currentIndex, array) =>
-            acc +
-            parseInt(currentValue) *
-                Math.pow(2, array.length - 1 - currentIndex),
-        0,
-    )
+    return ans;
 }
 
 module.exports = findComplement
