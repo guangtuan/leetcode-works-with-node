@@ -2,7 +2,7 @@
  * @param {number} num
  * @return {number}
  */
-var findComplement = function (num) {
+var findComplement = function (num: number) {
     const bits = (num >>> 0).toString(2)
     const result = []
     for (let bit of bits) {
