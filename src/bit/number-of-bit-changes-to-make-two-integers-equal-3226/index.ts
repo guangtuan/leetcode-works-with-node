@@ -4,21 +4,21 @@ function minChanges(n: number, k: number): number {
     // n-bit != k-bit
     // n-bit == 1; ans += 1
     // n-bit == 0; return -1
-    const bitLength = Math.floor(Math.log2(Math.max(n, k))) + 1;
-    let ans = 0;
+    const bitLength = Math.floor(Math.log2(Math.max(n, k))) + 1
+    let ans = 0
     for (let i = bitLength - 1; i >= 0; i--) {
-        const nBit = (n >> i) & 1;
-        const kBit = (k >> i) & 1;
+        const nBit = (n >> i) & 1
+        const kBit = (k >> i) & 1
         if (nBit == kBit) {
-            continue;
+            continue
         }
         if (nBit == 1) {
-            ans += 1;
+            ans += 1
         } else {
-            return -1;
+            return -1
         }
     }
-    return ans;
-};
+    return ans
+}
 
-module.exports = minChanges;
+module.exports = minChanges

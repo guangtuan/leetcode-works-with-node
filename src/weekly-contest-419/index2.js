@@ -12,27 +12,28 @@
  * @return {number}
  */
 var kthLargestPerfectSubtree = function (root, k) {
-    const result = [];
+    const result = []
     const walk = (node) => {
         if (node === null) {
-            result.push({perfect: true, size: 0});
-            return {perfect: true, size: 0};
+            result.push({ perfect: true, size: 0 })
+            return { perfect: true, size: 0 }
         }
-        let { perfect: leftPerfect, size: leftSize } = walk(node.left);
-        let { perfect: rightPerfect, size: rightSize } = walk(node.right);
+        let { perfect: leftPerfect, size: leftSize } = walk(node.left)
+        let { perfect: rightPerfect, size: rightSize } = walk(node.right)
         const merged = {
-            perfect: leftPerfect && rightPerfect && (leftSize === rightSize),
-            size: leftSize + rightSize + 1
-        };
-        result.push(merged);
-        return merged;
+            perfect: leftPerfect && rightPerfect && leftSize === rightSize,
+            size: leftSize + rightSize + 1,
+        }
+        result.push(merged)
+        return merged
     }
-    walk(root);
-    return result
-        .filter(it => it.size !== 0 && it.perfect)
-        .sort((a, b) => b.size - a.size)
-        .map(it => it.size)
-    [k - 1] || -1;
-};
+    walk(root)
+    return (
+        result
+            .filter((it) => it.size !== 0 && it.perfect)
+            .sort((a, b) => b.size - a.size)
+            .map((it) => it.size)[k - 1] || -1
+    )
+}
 
-module.exports = kthLargestPerfectSubtree;
+module.exports = kthLargestPerfectSubtree

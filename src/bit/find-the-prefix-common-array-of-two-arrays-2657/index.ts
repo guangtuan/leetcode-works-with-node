@@ -1,23 +1,23 @@
 function findThePrefixCommonArray(A: number[], B: number[]): number[] {
     const getBit1 = (m: bigint): number => {
-        let bit1Count = 0;
+        let bit1Count = 0
         while (m > 0) {
             if ((m & 1n) === 1n) {
-                bit1Count += 1;
+                bit1Count += 1
             }
-            m = m >> 1n;
+            m = m >> 1n
         }
-        return bit1Count;
+        return bit1Count
     }
-    let aValue = 0n;
-    let bValue = 0n;
-    const ans = [];
+    let aValue = 0n
+    let bValue = 0n
+    const ans = []
     for (let i = 0; i < A.length; i++) {
-        aValue += 2n << BigInt(A[i]);
-        bValue += 2n << BigInt(B[i]);
-        ans.push(getBit1(aValue & bValue));
+        aValue += 2n << BigInt(A[i])
+        bValue += 2n << BigInt(B[i])
+        ans.push(getBit1(aValue & bValue))
     }
-    return ans;
-};
+    return ans
+}
 
-module.exports = findThePrefixCommonArray;
+module.exports = findThePrefixCommonArray

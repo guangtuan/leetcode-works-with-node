@@ -1,9 +1,9 @@
 function hammingWeight(n: number): number {
-    let ans = 0;
+    let ans = 0
     for (let i = 31; i >= 0; i--) {
-        ans += ((n >> i) & 1);
+        ans += (n >> i) & 1
     }
-    return ans;
-};
+    return ans
+}
 
-module.exports = hammingWeight;
+module.exports = hammingWeight
