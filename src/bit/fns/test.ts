@@ -1,12 +1,27 @@
 describe('fns for bit operation', () => {
     const assert = require('assert')
     const {
+        lowbit,
+        lowbit2,
         getBitLength,
         getBitLength2,
         invert,
         count1Bit,
         count1Bit2,
     } = require('./index')
+    for (let i = 0; i <= 10; i++) {
+        const value = Math.floor(10 ** 6 * Math.random())
+        it(`count lowbit for ${value.toString(2)}`, () => {
+            const raw = value.toString(2)
+            const result1 = lowbit(value).toString(2)
+            const result2 = lowbit2(value).toString(2)
+            expect(raw.endsWith(result1)).toBeTruthy()
+            expect(raw.endsWith(result2)).toBeTruthy()
+            expect(result1.startsWith('1')).toBeTruthy()
+            expect(result2.startsWith('1')).toBeTruthy()
+            expect(result1).toBe(result2)
+        })
+    }
     for (let i = 0; i <= 10; i++) {
         const value = Math.pow(2, i) - 1
         it(`count 1 bit for ${value}`, () => {

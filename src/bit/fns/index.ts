@@ -44,7 +44,30 @@ const count1Bit2 = (num: number) => {
     return result
 }
 
+const lowbit = (num: number): number => {
+    /**
+     *  s = 101100
+     * ~s = 010011
+     * (~s)+1 = 010100 // 根据补码的定义，这就是 -s  =>  s 的最低 1 左侧取反，右侧不变
+     * s & -s = 000100 // lowbit
+     */
+    return num & (-1 * num)
+}
+
+const lowbit2 = (num: number): number => {
+    /**
+     * s      = 101100 raw
+     * ~s     = 010011 取反
+     * (~s)+1 = 010100 取反+1
+     * s & -s = 000100 // lowbit
+     */
+    const inverted = invert(num)
+    return num & (inverted + 1)
+}
+
 module.exports = {
+    lowbit,
+    lowbit2,
     count1Bit,
     count1Bit2,
     getBitLength,
