@@ -5,6 +5,16 @@ const getBitLength = (num: number): number => {
     return Math.floor(Math.log2(num)) + 1
 }
 
+const toBitArray = (num: number): number[] => {
+    let result = []
+    let work = num
+    do {
+        result.unshift(work & 1)
+        work = work >> 1
+    } while (work > 0)
+    return result
+}
+
 const getBitLength2 = (num: number): number => {
     if (num === 0) {
         return 1
@@ -66,6 +76,7 @@ const lowbit2 = (num: number): number => {
 }
 
 module.exports = {
+    toBitArray,
     lowbit,
     lowbit2,
     count1Bit,

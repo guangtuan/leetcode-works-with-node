@@ -1,6 +1,7 @@
 describe('fns for bit operation', () => {
     const assert = require('assert')
     const {
+        toBitArray,
         lowbit,
         lowbit2,
         getBitLength,
@@ -9,6 +10,21 @@ describe('fns for bit operation', () => {
         count1Bit,
         count1Bit2,
     } = require('./index')
+    for (let value of [
+        ...Array(3)
+            .fill(0)
+            .map((_nocare) => Math.floor(10 ** 6 * Math.random())),
+        0,
+    ]) {
+        it(`get bit array for ${value.toString(2)}`, () => {
+            const bitArray = toBitArray(value)
+            const strWay = value
+                .toString(2)
+                .split('')
+                .map((it) => Number.parseInt(it))
+            expect(bitArray).toStrictEqual(strWay)
+        })
+    }
     for (let i = 0; i <= 10; i++) {
         const value = Math.floor(10 ** 6 * Math.random())
         it(`count lowbit for ${value.toString(2)}`, () => {
