@@ -2,6 +2,7 @@ describe('fns for bit operation', () => {
     const assert = require('assert')
     const {
         toBitArray,
+        toBitArrayRc,
         lowbit,
         lowbit2,
         getBitLength,
@@ -17,12 +18,15 @@ describe('fns for bit operation', () => {
         0,
     ]) {
         it(`get bit array for ${value.toString(2)}`, () => {
-            const bitArray = toBitArray(value)
             const strWay = value
                 .toString(2)
                 .split('')
                 .map((it) => Number.parseInt(it))
-            expect(bitArray).toStrictEqual(strWay)
+            expect(toBitArray(value)).toStrictEqual(strWay)
+            console.log(
+                `result of ${value.toString(2)} is ${toBitArrayRc(value)}`,
+            )
+            expect(toBitArrayRc(value)).toStrictEqual(strWay)
         })
     }
     for (let i = 0; i <= 10; i++) {
