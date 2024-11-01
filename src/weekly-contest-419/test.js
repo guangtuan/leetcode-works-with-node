@@ -41,7 +41,6 @@ const assert = require('assert')
         })
     })
 })()
-
 ;(() => {
     const resolve = require('./index2')
     const testCases = [
