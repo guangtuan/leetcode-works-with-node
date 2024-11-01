@@ -3,6 +3,18 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
+    "lint-staged": {
+        "*.{ts,js,json}": [
+            "prettier --write",
+            "git add"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged",
+            "pre-push": "npm run format:check"
+        }
+    },
     "jest": {
         "transform": {
             "^.+\\.(t|j)sx?$": [
@@ -15,23 +27,22 @@
         "testRegex": "test\\.(t|j)s?$",
         "moduleFileExtensions": [
             "ts",
-            "tsx",
             "js",
-            "jsx",
-            "json",
-            "node"
+            "json"
         ]
     },
     "scripts": {
+        "format:check": "prettier --check .",
         "test": "jest",
         "fmt": "prettier -c . --write"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "dependencies": {
-    },
+    "dependencies": {},
     "devDependencies": {
+        "husky": "9.1.6",
+        "lint-staged": "15.2.10",
         "prettier": "2.8.1",
         "@types/jest": "29.5.14",
         "jest": "29.7.0",
