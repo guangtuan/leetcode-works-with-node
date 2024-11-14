@@ -18,4 +18,33 @@ function numOfSubarrays(arr: number[], k: number, threshold: number): number {
     return ans
 }
 
-module.exports = numOfSubarrays
+const numOfSubarrays2 = (
+    arr: number[],
+    k: number,
+    threshold: number,
+): number => {
+    const edge = k * threshold
+    const check = (
+        pre: number, // 窗口内的数据 (当前是 k - 1 等待循环内的进入动作)
+        left: number, // 窗口左边
+        right: number, // 窗口右边
+    ): number => {
+        if (right === arr.length) {
+            return 0
+        }
+        const sum = pre + arr[right]
+        return (
+            (sum >= edge ? 1 : 0) + check(sum - arr[left], left + 1, right + 1)
+        )
+    }
+    return check(
+        arr.slice(0, k - 1).reduce((acc: number, v: number) => acc + v, 0),
+        0,
+        k - 1,
+    )
+}
+
+module.exports = {
+    numOfSubarrays,
+    numOfSubarrays2,
+}

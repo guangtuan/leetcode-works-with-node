@@ -10,12 +10,19 @@ describe('1343. Number of Sub-arrays of Size K and Average Greater than or Equal
         },
     ]
 
-    const resolve = require('./index')
+    const { numOfSubarrays, numOfSubarrays2 } = require('./index')
 
     for (let testCase of testCases) {
         it(`${JSON.stringify(testCase)}`, () => {
             expect(
-                resolve(
+                numOfSubarrays(
+                    testCase.input.arr,
+                    testCase.input.k,
+                    testCase.input.threshold,
+                ),
+            ).toStrictEqual(testCase.expected)
+            expect(
+                numOfSubarrays2(
                     testCase.input.arr,
                     testCase.input.k,
                     testCase.input.threshold,
