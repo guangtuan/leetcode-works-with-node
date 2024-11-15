@@ -18,4 +18,29 @@ const hasAllCodes = (s: string, k: number): boolean => {
     return expectSize === result.size
 }
 
-module.exports = hasAllCodes
+const hasAllCodes2 = (s: string, k: number): boolean => {
+    const mask = (1 << (k - 1)) - 1
+    const { ns } = s
+        .split('')
+        .map((it: string): number => (it === '1' ? 1 : 0))
+        .reduce(
+            (
+                acc: { window: number; ns: Set<number> },
+                value: number,
+                index: number,
+            ) => {
+                // 窗口.size === k - 1
+                const window = (acc.window << 1) | value // 新元素进入窗口
+                if (index < k - 1) {
+                    return { window, ns: acc.ns }
+                }
+                acc.ns.add(window)
+                // leading 元素离开窗口
+                return { window: window & mask, ns: acc.ns }
+            },
+            { window: 0, ns: new Set<number>() },
+        )
+    return 1 << k === ns.size
+}
+
+module.exports = { hasAllCodes, hasAllCodes2 }

@@ -30,13 +30,16 @@ describe('1461. Check If a String Contains All Binary Codes of Size K', () => {
         },
     ]
 
-    const resolve = require('./index')
+    const { hasAllCodes, hasAllCodes2 } = require('./index')
 
     for (let testCase of testCases) {
         it(`${JSON.stringify(testCase)}`, () => {
-            expect(resolve(testCase.input.s, testCase.input.k)).toStrictEqual(
-                testCase.expected,
-            )
+            expect(
+                hasAllCodes(testCase.input.s, testCase.input.k),
+            ).toStrictEqual(testCase.expected)
+            expect(
+                hasAllCodes2(testCase.input.s, testCase.input.k),
+            ).toStrictEqual(testCase.expected)
         })
     }
 })
