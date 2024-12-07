@@ -1,34 +1,26 @@
 function getLargestOutlier(nums: number[]): number {
-    let sorted = nums.sort((a, b) => b - a)
-    const sum = sorted.reduce((acc: number, value: number) => acc + value, 0)
-    const findMatch = (s: number, chooseIndex: number) => {
-        if (s % 2 === 1) {
-            return false
+    /**
+     * sum(所有数字) = 异常值 + 和 + 剩下的其他数字
+     *
+     * 去掉异常值以后，找一个数字 = (sum - 异常值) / 2
+     *
+     * 需要注意 异常值的出现次数
+     */
+    const m: Record<number, number> = nums.reduce(
+        (acc: Record<number, number>, value: number) =>
+            Object.assign(acc, { [value]: (acc[value] || 0) + 1 }),
+        {},
+    )
+    const sum = nums.reduce((acc: number, value: number) => acc + value, 0)
+    return nums.reduce((ans: number, exp: number) => {
+        const target = (sum - exp) / 2
+        const compare = exp === target ? 1 : 0
+        if (m[target] > compare) {
+            return Math.max(ans, exp)
+        } else {
+            return ans
         }
-        let l = 0
-        let r = sorted.length - 1
-        let half = s / 2
-        while (l <= r) {
-            let mid = Math.floor((l + r) / 2)
-            if (half == sorted[mid]) {
-                return mid !== chooseIndex
-            }
-            if (half < sorted[mid]) {
-                l = mid + 1
-            } else {
-                r = mid - 1
-            }
-        }
-        return false
-    }
-    for (let i = 0; i < sorted.length; i++) {
-        const n = sorted[i]
-        const s = sum - n
-        if (findMatch(s, i)) {
-            return n
-        }
-    }
-    return 0
+    }, -Infinity)
 }
 
 module.exports = getLargestOutlier
