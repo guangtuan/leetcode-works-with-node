@@ -1,7 +1,4 @@
-const resolve = require('./index')
-const assert = require('assert')
-
-const testCases = [
+const ts = [
     {
         input: [1, 2, 3, 1],
         output: 4,
@@ -21,9 +18,12 @@ const testCases = [
 ]
 
 describe('#house-robber', () => {
-    testCases.forEach((testCase) => {
+    const resolve = require('./index')
+    ts.forEach((testCase) => {
         it(`input ${testCase.input}, output is ${testCase.output}`, () => {
-            assert.equal(testCase.output, resolve.call(null, testCase.input))
+            expect(testCase.output).toStrictEqual(
+                resolve.call(null, testCase.input),
+            )
         })
     })
 })
