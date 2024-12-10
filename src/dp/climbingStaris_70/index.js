@@ -3,11 +3,11 @@
  * @return {number}
  */
 var climbStairs = function (n) {
-    const results = [0, 1, 2]
-    for (let i = 3; i <= n; i++) {
-        results[i] = results[i - 1] + results[i - 2]
+    const f = [1, 1]
+    for (let i = 2; i <= n; i++) {
+        f[i] = f[i - 1] + f[i - 2]
     }
-    return results[n]
+    return f[n]
 }
 
 module.exports = climbStairs
